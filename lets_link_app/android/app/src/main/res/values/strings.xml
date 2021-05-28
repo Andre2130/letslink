@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<resources>
+    <string name="app_name">LetsLinkApp</string>
+    <string name="facebook_app_id">489170415621447</string>
+               <string name="fb_login_protocol_scheme">fb489170415621447</string>
+</resources>
