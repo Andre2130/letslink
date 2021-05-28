@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1019294068051",
+    "firebase_url": "https://lets-link-af556.firebaseio.com",
+    "project_id": "lets-link-af556",
+    "storage_bucket": "lets-link-af556.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1019294068051:android:6b2a038df382d6396045a6",
+        "android_client_info": {
+          "package_name": "com.flutterflow.letslinkapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1019294068051-fun07codcborcdmom219ddrkfp241ia9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB_i7lZ0hayNnHG1E15tTs0-n3nkHc9kuI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1019294068051-fun07codcborcdmom219ddrkfp241ia9.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1019294068051-0hp9m413dpse30hngqt2g4ntvjkeoc6l.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "letslink"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
