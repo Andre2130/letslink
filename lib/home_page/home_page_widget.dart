@@ -16,6 +16,14 @@ class _HomePageWidgetState extends State<HomePageWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
+      body: SafeArea(
+        child: Image.network(
+          'https://picsum.photos/seed/874/600',
+          width: 100,
+          height: 100,
+          fit: BoxFit.cover,
+        ),
+      ),
     );
   }
 }
