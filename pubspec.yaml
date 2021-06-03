@@ -37,6 +37,7 @@ dependencies:
   json_serializable: ^3.5.1
   rxdart: ^0.25.0
   sign_in_with_apple: ^2.5.4
+  smooth_page_indicator:
   url_launcher:
 
 
@@ -66,6 +67,7 @@ flutter:
   assets:
     - assets/images/
     - assets/videos/
+    - assets/audios/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

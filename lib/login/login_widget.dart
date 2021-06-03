@@ -1,4 +1,3 @@
-import '../auth/auth_util.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../home_page/home_page_widget.dart';
@@ -13,15 +12,15 @@ class LoginWidget extends StatefulWidget {
 }
 
 class _LoginWidgetState extends State<LoginWidget> {
-  TextEditingController emailTextController;
-  TextEditingController passwordTextController;
+  TextEditingController textController1;
+  TextEditingController textController2;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    emailTextController = TextEditingController();
-    passwordTextController = TextEditingController();
+    textController1 = TextEditingController();
+    textController2 = TextEditingController();
   }
 
   @override
@@ -64,7 +63,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                               Align(
                                 alignment: Alignment(0, 0),
                                 child: TextFormField(
-                                  controller: emailTextController,
+                                  controller: textController1,
                                   obscureText: false,
                                   decoration: InputDecoration(
                                     hintText: 'Username',
@@ -123,7 +122,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                               Align(
                                 alignment: Alignment(0, 0),
                                 child: TextFormField(
-                                  controller: passwordTextController,
+                                  controller: textController2,
                                   obscureText: true,
                                   decoration: InputDecoration(
                                     hintText: 'Password',
@@ -179,23 +178,8 @@ class _LoginWidgetState extends State<LoginWidget> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             FFButtonWidget(
-                              onPressed: () async {
-                                final user = await createAccountWithEmail(
-                                  context,
-                                  emailTextController.text,
-                                  passwordTextController.text,
-                                );
-                                if (user == null) {
-                                  return;
-                                }
-
-                                await Navigator.pushAndRemoveUntil(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => HomePageWidget(),
-                                  ),
-                                  (r) => false,
-                                );
+                              onPressed: () {
+                                print('Button pressed ...');
                               },
                               text: 'Sign up',
                               options: FFButtonOptions(
@@ -218,23 +202,8 @@ class _LoginWidgetState extends State<LoginWidget> {
                             Padding(
                               padding: EdgeInsets.fromLTRB(35, 0, 0, 0),
                               child: FFButtonWidget(
-                                onPressed: () async {
-                                  final user = await signInWithEmail(
-                                    context,
-                                    emailTextController.text,
-                                    passwordTextController.text,
-                                  );
-                                  if (user == null) {
-                                    return;
-                                  }
-
-                                  await Navigator.pushAndRemoveUntil(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => HomePageWidget(),
-                                    ),
-                                    (r) => false,
-                                  );
+                                onPressed: () {
+                                  print('Button pressed ...');
                                 },
                                 text: 'Sign in',
                                 options: FFButtonOptions(
@@ -258,12 +227,22 @@ class _LoginWidgetState extends State<LoginWidget> {
                           ],
                         ),
                       ),
-                      Text(
-                        'Forgot Password?',
-                        style: GoogleFonts.getFont(
-                          'Lato',
-                          color: Color(0xFF676767),
-                          fontSize: 16,
+                      InkWell(
+                        onTap: () async {
+                          await Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => HomePageWidget(),
+                            ),
+                          );
+                        },
+                        child: Text(
+                          'Forgot Password?',
+                          style: GoogleFonts.getFont(
+                            'Lato',
+                            color: Color(0xFF676767),
+                            fontSize: 16,
+                          ),
                         ),
                       )
                     ],
