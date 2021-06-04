@@ -12,10 +12,6 @@ abstract class UsersRecord implements Built<UsersRecord, UsersRecordBuilder> {
   static Serializer<UsersRecord> get serializer => _$usersRecordSerializer;
 
   @nullable
-  @BuiltValueField(wireName: 'Name')
-  String get name;
-
-  @nullable
   @BuiltValueField(wireName: 'last_name')
   String get lastName;
 
@@ -32,16 +28,8 @@ abstract class UsersRecord implements Built<UsersRecord, UsersRecordBuilder> {
   double get age;
 
   @nullable
-  @BuiltValueField(wireName: 'State')
-  String get state;
-
-  @nullable
   @BuiltValueField(wireName: 'profile_pic')
   String get profilePic;
-
-  @nullable
-  @BuiltValueField(wireName: 'Host')
-  bool get host;
 
   @nullable
   @BuiltValueField(wireName: 'display_name')
@@ -59,22 +47,31 @@ abstract class UsersRecord implements Built<UsersRecord, UsersRecordBuilder> {
   String get photoUrl;
 
   @nullable
+  bool get host;
+
+  @nullable
+  String get name;
+
+  @nullable
+  String get state;
+
+  @nullable
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference get reference;
 
   static void _initializeBuilder(UsersRecordBuilder builder) => builder
-    ..name = ''
     ..lastName = ''
     ..username = ''
     ..email = ''
     ..phone = ''
     ..age = 0.0
-    ..state = ''
     ..profilePic = ''
-    ..host = false
     ..displayName = ''
     ..uid = ''
-    ..photoUrl = '';
+    ..photoUrl = ''
+    ..host = false
+    ..name = ''
+    ..state = '';
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('users');
@@ -89,52 +86,52 @@ abstract class UsersRecord implements Built<UsersRecord, UsersRecordBuilder> {
 }
 
 Map<String, dynamic> createUsersRecordData({
-  String name,
   String lastName,
   String username,
   String email,
   String phone,
   double age,
-  String state,
   String profilePic,
-  bool host,
   String displayName,
   String uid,
   Timestamp createdTime,
   String photoUrl,
+  bool host,
+  String name,
+  String state,
 }) =>
     serializers.serializeWith(
         UsersRecord.serializer,
         UsersRecord((u) => u
-          ..name = name
           ..lastName = lastName
           ..username = username
           ..email = email
           ..phone = phone
           ..age = age
-          ..state = state
           ..profilePic = profilePic
-          ..host = host
           ..displayName = displayName
           ..uid = uid
           ..createdTime = createdTime
-          ..photoUrl = photoUrl));
+          ..photoUrl = photoUrl
+          ..host = host
+          ..name = name
+          ..state = state));
 
 UsersRecord get dummyUsersRecord {
   final builder = UsersRecordBuilder()
-    ..name = dummyString
     ..lastName = dummyString
     ..username = dummyString
     ..email = dummyString
     ..phone = dummyString
     ..age = dummyDouble
-    ..state = dummyString
     ..profilePic = dummyImagePath
-    ..host = dummyBoolean
     ..displayName = dummyString
     ..uid = dummyString
     ..createdTime = dummyTimestamp
-    ..photoUrl = dummyString;
+    ..photoUrl = dummyString
+    ..host = dummyBoolean
+    ..name = dummyString
+    ..state = dummyString;
   return builder.build();
 }
 
