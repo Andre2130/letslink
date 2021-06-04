@@ -31,9 +31,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
       end: DateTime.now().endOfDay,
     );
     dropDownValue1 = 'Category';
-    textController1 = TextEditingController(text: 'Event Name');
-    textController2 = TextEditingController(text: 'Location');
-    textController3 = TextEditingController(text: 'Event Time');
+    textController1 = TextEditingController();
+    textController2 = TextEditingController();
+    textController3 = TextEditingController();
     dropDownValue2 = 'Public';
   }
 
@@ -440,7 +440,11 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                         controller: textController1,
                         obscureText: false,
                         decoration: InputDecoration(
-                          hintText: '[Some hint text...]',
+                          labelText: 'Event Name',
+                          labelStyle: FlutterFlowTheme.bodyText1.override(
+                            fontFamily: 'Poppins',
+                          ),
+                          hintText: 'Name',
                           hintStyle: FlutterFlowTheme.bodyText1.override(
                             fontFamily: 'Poppins',
                           ),
@@ -473,7 +477,11 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                         controller: textController2,
                         obscureText: false,
                         decoration: InputDecoration(
-                          hintText: '[Some hint text...]',
+                          labelText: 'Location',
+                          labelStyle: FlutterFlowTheme.bodyText1.override(
+                            fontFamily: 'Poppins',
+                          ),
+                          hintText: 'Location',
                           hintStyle: FlutterFlowTheme.bodyText1.override(
                             fontFamily: 'Poppins',
                           ),
@@ -506,7 +514,11 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                         controller: textController3,
                         obscureText: false,
                         decoration: InputDecoration(
-                          hintText: '[Some hint text...]',
+                          labelText: 'Event Time',
+                          labelStyle: FlutterFlowTheme.bodyText1.override(
+                            fontFamily: 'Poppins',
+                          ),
+                          hintText: 'Event Time',
                           hintStyle: FlutterFlowTheme.bodyText1.override(
                             fontFamily: 'Poppins',
                           ),
