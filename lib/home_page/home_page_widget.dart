@@ -49,11 +49,11 @@ class _HomePageWidgetState extends State<HomePageWidget> {
           color: Colors.black,
           size: 24,
         ),
-        title: Text(
-          'Let\'s Link',
-          style: FlutterFlowTheme.bodyText1.override(
-            fontFamily: 'Poppins',
-          ),
+        title: Image.asset(
+          'assets/images/LL4.png',
+          width: 250,
+          height: 100,
+          fit: BoxFit.contain,
         ),
         actions: [],
         centerTitle: true,
