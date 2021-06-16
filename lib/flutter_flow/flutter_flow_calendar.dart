@@ -32,6 +32,12 @@ class FlutterFlowCalendar extends StatefulWidget {
     this.runMode = false,
     this.weekFormat = false,
     this.weekStartsMonday = false,
+    this.iconColor,
+    this.dateStyle,
+    this.dayOfWeekStyle,
+    this.inactiveDateStyle,
+    this.selectedDateStyle,
+    this.titleStyle,
     Key key,
   }) : super(key: key);
 
@@ -40,6 +46,12 @@ class FlutterFlowCalendar extends StatefulWidget {
   final bool weekStartsMonday;
   final Color color;
   final void Function(DateTimeRange) onChange;
+  final Color iconColor;
+  final TextStyle dateStyle;
+  final TextStyle dayOfWeekStyle;
+  final TextStyle inactiveDateStyle;
+  final TextStyle selectedDateStyle;
+  final TextStyle titleStyle;
 
   static const Cubic pageAnimationCurve = Curves.easeInOut;
   static const Duration pageAnimationDuration = Duration(milliseconds: 350);
@@ -118,6 +130,8 @@ class _FlutterFlowCalendarState extends State<FlutterFlowCalendar> {
                 });
               }
             },
+            titleStyle: widget.titleStyle,
+            iconColor: widget.iconColor,
           ),
           TableCalendar(
             calendarController: calendarController,
@@ -126,22 +140,37 @@ class _FlutterFlowCalendarState extends State<FlutterFlowCalendar> {
             initialCalendarFormat: calendarFormat,
             headerVisible: false,
             calendarStyle: CalendarStyle(
-              weekdayStyle: const TextStyle(),
-              weekendStyle: const TextStyle(),
-              holidayStyle: const TextStyle(),
-              outsideWeekendStyle: const TextStyle(color: Color(0xFF9E9E9E)),
-              outsideHolidayStyle: const TextStyle(color: Color(0xFF9E9E9E)),
-              eventDayStyle: const TextStyle(),
+              weekdayStyle: widget.dateStyle,
+              weekendStyle: widget.dateStyle,
+              holidayStyle: widget.dateStyle,
+              eventDayStyle: widget.dateStyle,
+              selectedStyle:
+                  const TextStyle(color: Color(0xFFFAFAFA), fontSize: 16.0)
+                      .merge(widget.selectedDateStyle),
+              todayStyle:
+                  const TextStyle(color: Color(0xFFFAFAFA), fontSize: 16.0)
+                      .merge(widget.selectedDateStyle),
+              unavailableStyle: const TextStyle(color: Color(0xFF9E9E9E))
+                  .merge(widget.inactiveDateStyle),
+              outsideStyle: const TextStyle(color: Color(0xFF9E9E9E))
+                  .merge(widget.inactiveDateStyle),
+              outsideWeekendStyle: const TextStyle(color: Color(0xFF9E9E9E))
+                  .merge(widget.inactiveDateStyle),
+              outsideHolidayStyle: const TextStyle(color: Color(0xFF9E9E9E))
+                  .merge(widget.inactiveDateStyle),
               selectedColor: color,
               todayColor: lighterColor,
               markersColor: lightColor,
+              markersMaxAmount: 3,
               canEventMarkersOverflow: true,
             ),
             availableGestures: AvailableGestures.horizontalSwipe,
             startingDayOfWeek: startingDayOfWeek,
-            daysOfWeekStyle: const DaysOfWeekStyle(
-              weekdayStyle: TextStyle(color: Color(0xFF616161)),
-              weekendStyle: TextStyle(color: Color(0xFF616161)),
+            daysOfWeekStyle: DaysOfWeekStyle(
+              weekdayStyle: const TextStyle(color: Color(0xFF616161))
+                  .merge(widget.dayOfWeekStyle),
+              weekendStyle: const TextStyle(color: Color(0xFF616161))
+                  .merge(widget.dayOfWeekStyle),
             ),
             holidays: const {},
             onDaySelected: (newSelectedDay, _, __) {
@@ -175,8 +204,10 @@ class CalendarHeader extends StatelessWidget {
     @required this.onLeftChevronTap,
     @required this.onRightChevronTap,
     @required this.onTodayButtonTap,
+    this.iconColor,
     this.clearButtonVisible = false,
     this.onClearButtonTap,
+    this.titleStyle,
     Key key,
   }) : super(key: key);
 
@@ -186,6 +217,8 @@ class CalendarHeader extends StatelessWidget {
   final VoidCallback onLeftChevronTap;
   final VoidCallback onRightChevronTap;
   final VoidCallback onTodayButtonTap;
+  final Color iconColor;
+  final TextStyle titleStyle;
 
   @override
   Widget build(BuildContext context) {
@@ -201,23 +234,26 @@ class CalendarHeader extends StatelessWidget {
             width: 20,
           ),
           Expanded(
-            child: Text(text, style: const TextStyle(fontSize: 17)),
+            child: Text(
+              text,
+              style: const TextStyle(fontSize: 17).merge(titleStyle),
+            ),
           ),
           if (clearButtonVisible)
             CustomIconButton(
-              icon: Icons.clear,
+              icon: Icon(Icons.clear, color: iconColor),
               onTap: onClearButtonTap,
             ),
           CustomIconButton(
-            icon: Icons.calendar_today,
+            icon: Icon(Icons.calendar_today, color: iconColor),
             onTap: onTodayButtonTap,
           ),
           CustomIconButton(
-            icon: Icons.chevron_left,
+            icon: Icon(Icons.chevron_left, color: iconColor),
             onTap: onLeftChevronTap,
           ),
           CustomIconButton(
-            icon: Icons.chevron_right,
+            icon: Icon(Icons.chevron_right, color: iconColor),
             onTap: onRightChevronTap,
           ),
         ],
@@ -235,7 +271,7 @@ class CustomIconButton extends StatelessWidget {
     Key key,
   }) : super(key: key);
 
-  final IconData icon;
+  final Icon icon;
   final VoidCallback onTap;
   final EdgeInsets margin;
   final EdgeInsets padding;
@@ -249,7 +285,11 @@ class CustomIconButton extends StatelessWidget {
         borderRadius: BorderRadius.circular(100),
         child: Padding(
           padding: padding,
-          child: Icon(icon),
+          child: Icon(
+            icon.icon,
+            color: icon?.color,
+            size: icon?.size,
+          ),
         ),
       ),
     );

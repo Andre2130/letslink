@@ -10,6 +10,7 @@ import 'schema/group_record.dart';
 import 'schema/serializers.dart';
 
 export 'package:cloud_firestore/cloud_firestore.dart';
+export 'schema/serializers.dart';
 export 'schema/users_record.dart';
 export 'schema/events_record.dart';
 export 'schema/group_record.dart';
@@ -63,6 +64,7 @@ Future maybeCreateUser(User user) async {
     displayName: user.displayName,
     photoUrl: user.photoURL,
     uid: user.uid,
+    phoneNumber: user.phoneNumber,
     createdTime: getCurrentTimestamp,
   );
 

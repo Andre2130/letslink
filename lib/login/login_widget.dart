@@ -1,4 +1,5 @@
 import '../flutter_flow/flutter_flow_theme.dart';
+import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../home_page/home_page_widget.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +15,7 @@ class LoginWidget extends StatefulWidget {
 class _LoginWidgetState extends State<LoginWidget> {
   TextEditingController textController1;
   TextEditingController textController2;
+  bool passwordVisibility;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -21,6 +23,7 @@ class _LoginWidgetState extends State<LoginWidget> {
     super.initState();
     textController1 = TextEditingController();
     textController2 = TextEditingController();
+    passwordVisibility = false;
   }
 
   @override
@@ -123,7 +126,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                 alignment: Alignment(0, 0),
                                 child: TextFormField(
                                   controller: textController2,
-                                  obscureText: true,
+                                  obscureText: !passwordVisibility,
                                   decoration: InputDecoration(
                                     hintText: 'Password',
                                     hintStyle: GoogleFonts.getFont(
@@ -149,6 +152,18 @@ class _LoginWidgetState extends State<LoginWidget> {
                                       borderRadius: const BorderRadius.only(
                                         topLeft: Radius.circular(4.0),
                                         topRight: Radius.circular(4.0),
+                                      ),
+                                    ),
+                                    suffixIcon: InkWell(
+                                      onTap: () => setState(
+                                        () => passwordVisibility =
+                                            !passwordVisibility,
+                                      ),
+                                      child: Icon(
+                                        passwordVisibility
+                                            ? Icons.visibility_outlined
+                                            : Icons.visibility_off_outlined,
+                                        size: 22,
                                       ),
                                     ),
                                   ),

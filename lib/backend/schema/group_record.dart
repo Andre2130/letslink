@@ -2,6 +2,7 @@ import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:latlong/latlong.dart';
 
 import 'schema_util.dart';
 import 'serializers.dart';
@@ -28,7 +29,7 @@ abstract class GroupRecord implements Built<GroupRecord, GroupRecordBuilder> {
 
   @nullable
   @BuiltValueField(wireName: 'date_created')
-  Timestamp get dateCreated;
+  DateTime get dateCreated;
 
   @nullable
   @BuiltValueField(wireName: kDocumentReferenceField)
@@ -56,9 +57,9 @@ Map<String, dynamic> createGroupRecordData({
   DocumentReference host,
   String profilePic,
   bool public,
-  Timestamp dateCreated,
+  DateTime dateCreated,
 }) =>
-    serializers.serializeWith(
+    serializers.toFirestore(
         GroupRecord.serializer,
         GroupRecord((g) => g
           ..name = name

@@ -1,9 +1,12 @@
+import '../event_list/event_list_widget.dart';
 import '../flutter_flow/flutter_flow_calendar.dart';
 import '../flutter_flow/flutter_flow_drop_down_template.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
+import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class HomePageWidget extends StatefulWidget {
@@ -30,11 +33,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
       start: DateTime.now().startOfDay,
       end: DateTime.now().endOfDay,
     );
-    dropDownValue1 = 'Category';
     textController1 = TextEditingController();
     textController2 = TextEditingController();
     textController3 = TextEditingController();
-    dropDownValue2 = 'Public';
   }
 
   @override
@@ -184,28 +185,42 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                 Card(
                                   clipBehavior: Clip.antiAliasWithSaveLayer,
                                   color: Color(0xFFF5F5F5),
-                                  child: Stack(
-                                    children: [
-                                      Align(
-                                        alignment: Alignment(0, 0),
-                                        child: Image.network(
-                                          'https://picsum.photos/seed/585/600',
-                                          width: 100,
-                                          height: 100,
-                                          fit: BoxFit.cover,
+                                  child: InkWell(
+                                    onTap: () async {
+                                      await Navigator.push(
+                                        context,
+                                        PageTransition(
+                                          type: PageTransitionType.fade,
+                                          duration: Duration(milliseconds: 300),
+                                          reverseDuration:
+                                              Duration(milliseconds: 300),
+                                          child: EventListWidget(),
                                         ),
-                                      ),
-                                      Align(
-                                        alignment: Alignment(0.08, 0.84),
-                                        child: Text(
-                                          'Outdoor',
-                                          style: FlutterFlowTheme.bodyText1
-                                              .override(
-                                            fontFamily: 'Poppins',
+                                      );
+                                    },
+                                    child: Stack(
+                                      children: [
+                                        Align(
+                                          alignment: Alignment(0, 0),
+                                          child: Image.network(
+                                            'https://picsum.photos/seed/585/600',
+                                            width: 100,
+                                            height: 100,
+                                            fit: BoxFit.cover,
                                           ),
                                         ),
-                                      )
-                                    ],
+                                        Align(
+                                          alignment: Alignment(0.08, 0.84),
+                                          child: Text(
+                                            'Outdoor',
+                                            style: FlutterFlowTheme.bodyText1
+                                                .override(
+                                              fontFamily: 'Poppins',
+                                            ),
+                                          ),
+                                        )
+                                      ],
+                                    ),
                                   ),
                                 ),
                                 Card(
@@ -450,7 +465,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                           ),
                           enabledBorder: UnderlineInputBorder(
                             borderSide: BorderSide(
-                              color: Colors.transparent,
+                              color: Color(0x00000000),
                               width: 1,
                             ),
                             borderRadius: const BorderRadius.only(
@@ -460,7 +475,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                           ),
                           focusedBorder: UnderlineInputBorder(
                             borderSide: BorderSide(
-                              color: Colors.transparent,
+                              color: Color(0x00000000),
                               width: 1,
                             ),
                             borderRadius: const BorderRadius.only(
@@ -487,7 +502,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                           ),
                           enabledBorder: UnderlineInputBorder(
                             borderSide: BorderSide(
-                              color: Colors.transparent,
+                              color: Color(0x00000000),
                               width: 1,
                             ),
                             borderRadius: const BorderRadius.only(
@@ -497,7 +512,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                           ),
                           focusedBorder: UnderlineInputBorder(
                             borderSide: BorderSide(
-                              color: Colors.transparent,
+                              color: Color(0x00000000),
                               width: 1,
                             ),
                             borderRadius: const BorderRadius.only(
@@ -524,7 +539,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                           ),
                           enabledBorder: UnderlineInputBorder(
                             borderSide: BorderSide(
-                              color: Colors.transparent,
+                              color: Color(0x00000000),
                               width: 1,
                             ),
                             borderRadius: const BorderRadius.only(
@@ -534,7 +549,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                           ),
                           focusedBorder: UnderlineInputBorder(
                             borderSide: BorderSide(
-                              color: Colors.transparent,
+                              color: Color(0x00000000),
                               width: 1,
                             ),
                             borderRadius: const BorderRadius.only(

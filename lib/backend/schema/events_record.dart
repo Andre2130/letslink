@@ -2,6 +2,7 @@ import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:latlong/latlong.dart';
 
 import 'schema_util.dart';
 import 'serializers.dart';
@@ -18,7 +19,7 @@ abstract class EventsRecord
 
   @nullable
   @BuiltValueField(wireName: 'Date')
-  Timestamp get date;
+  DateTime get date;
 
   @nullable
   DocumentReference get host;
@@ -63,14 +64,14 @@ abstract class EventsRecord
 
 Map<String, dynamic> createEventsRecordData({
   String name,
-  Timestamp date,
+  DateTime date,
   DocumentReference host,
   String location,
   int rating,
   int uuid,
   String description,
 }) =>
-    serializers.serializeWith(
+    serializers.toFirestore(
         EventsRecord.serializer,
         EventsRecord((e) => e
           ..name = name
