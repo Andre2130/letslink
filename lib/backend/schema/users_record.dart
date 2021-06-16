@@ -23,9 +23,6 @@ abstract class UsersRecord implements Built<UsersRecord, UsersRecordBuilder> {
   String get email;
 
   @nullable
-  String get phone;
-
-  @nullable
   double get age;
 
   @nullable
@@ -57,6 +54,10 @@ abstract class UsersRecord implements Built<UsersRecord, UsersRecordBuilder> {
   String get state;
 
   @nullable
+  @BuiltValueField(wireName: 'phone_number')
+  String get phoneNumber;
+
+  @nullable
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference get reference;
 
@@ -64,7 +65,6 @@ abstract class UsersRecord implements Built<UsersRecord, UsersRecordBuilder> {
     ..lastName = ''
     ..username = ''
     ..email = ''
-    ..phone = ''
     ..age = 0.0
     ..profilePic = ''
     ..displayName = ''
@@ -72,7 +72,8 @@ abstract class UsersRecord implements Built<UsersRecord, UsersRecordBuilder> {
     ..photoUrl = ''
     ..host = false
     ..name = ''
-    ..state = '';
+    ..state = ''
+    ..phoneNumber = '';
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('users');
@@ -90,7 +91,6 @@ Map<String, dynamic> createUsersRecordData({
   String lastName,
   String username,
   String email,
-  String phone,
   double age,
   String profilePic,
   String displayName,
@@ -100,6 +100,7 @@ Map<String, dynamic> createUsersRecordData({
   bool host,
   String name,
   String state,
+  String phoneNumber,
 }) =>
     serializers.toFirestore(
         UsersRecord.serializer,
@@ -107,7 +108,6 @@ Map<String, dynamic> createUsersRecordData({
           ..lastName = lastName
           ..username = username
           ..email = email
-          ..phone = phone
           ..age = age
           ..profilePic = profilePic
           ..displayName = displayName
@@ -116,14 +116,14 @@ Map<String, dynamic> createUsersRecordData({
           ..photoUrl = photoUrl
           ..host = host
           ..name = name
-          ..state = state));
+          ..state = state
+          ..phoneNumber = phoneNumber));
 
 UsersRecord get dummyUsersRecord {
   final builder = UsersRecordBuilder()
     ..lastName = dummyString
     ..username = dummyString
     ..email = dummyString
-    ..phone = dummyString
     ..age = dummyDouble
     ..profilePic = dummyImagePath
     ..displayName = dummyString
@@ -132,7 +132,8 @@ UsersRecord get dummyUsersRecord {
     ..photoUrl = dummyString
     ..host = dummyBoolean
     ..name = dummyString
-    ..state = dummyString;
+    ..state = dummyString
+    ..phoneNumber = dummyString;
   return builder.build();
 }
 
