@@ -4,7 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class EventListWidget extends StatefulWidget {
-  EventListWidget({Key key}) : super(key: key);
+  EventListWidget({
+    Key key,
+    this.category,
+  }) : super(key: key);
+
+  final String category;
 
   @override
   _EventListWidgetState createState() => _EventListWidgetState();

@@ -6,7 +6,6 @@ import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:page_transition/page_transition.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class HomePageWidget extends StatefulWidget {
@@ -189,12 +188,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                     onTap: () async {
                                       await Navigator.push(
                                         context,
-                                        PageTransition(
-                                          type: PageTransitionType.fade,
-                                          duration: Duration(milliseconds: 300),
-                                          reverseDuration:
-                                              Duration(milliseconds: 300),
-                                          child: EventListWidget(),
+                                        MaterialPageRoute(
+                                          builder: (context) => EventListWidget(
+                                            category: 'Outdoor',
+                                          ),
                                         ),
                                       );
                                     },
